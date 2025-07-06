@@ -10,6 +10,7 @@ function updateTime() {
     amsterdamDate.innerHTML = amsterdamTime.format("dddd, MMMM Do YYYY");
     amsterdamTimeElement.innerHTML = `${amsterdamCurrentTime}`;
   }
+
   let shanghaiElement = document.querySelector("#shanghai");
   if (shanghaiElement) {
     let shanghaiDate = shanghaiElement.querySelector(".date");
@@ -22,23 +23,33 @@ function updateTime() {
     shanghaiTimeElement.innerHTML = `${shanghaiCurrentTime}`;
   }
 }
+let cityIntervalId;
 function updateCity(event) {
+  clearInterval(cityIntervalId);
   let cityTimeZone = event.target.value;
   if (cityTimeZone === "current") {
     cityTimeZone = moment.tz.guess();
   }
+
   let cityName = cityTimeZone.replace("_", " ").split("/")[1];
-  let cityTime = moment().tz(cityTimeZone);
-  let citiesElement = document.querySelector("#cities");
-  citiesElement.innerHTML = ` <div class="city">
-          <div>
-            <h2>${cityName}</h2>
-            <div class="date"> ${cityTime.format("dddd, MMMM Do YYYY")}</div>
-          </div>
-          <div class="time">${cityTime.format(
-            "h:mm:ss [<small>]A[</small>]"
-          )}</div>
-        </div>`;
+
+  function updateSelectedCityTime() {
+    let cityTime = moment().tz(cityTimeZone);
+    let citiesElement = document.querySelector("#cities");
+    citiesElement.innerHTML = ` 
+      <div class="city">
+        <div>
+          <h2>${cityName}</h2>
+          <div class="date">${cityTime.format("dddd, MMMM Do YYYY")}</div>
+        </div>
+        <div class="time">${cityTime.format(
+          "h:mm:ss [<small>]A[</small>]"
+        )}</div>
+      </div>`;
+  }
+
+  updateSelectedCityTime();
+  cityIntervalId = setInterval(updateSelectedCityTime, 1000);
 }
 
 updateTime();
