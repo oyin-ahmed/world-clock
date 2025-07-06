@@ -11,24 +11,25 @@
   <body>
     <div class="container">
       <h1>World clock</h1>
-      <select>
+      <select id="city">
         <option value="">Select a city</option>
-        <option value="paris">Paris</option>
-        <option value="sao-paulo">Sao Paulo</option>
-        <option value="dubai">Dubai</option>
-        <option value="chicago">Chicago</option>
+        <option value="current">My current location</option>
+        <option value="Europe/Paris">Paris</option>
+        <option value="America/Sao_Paulo">Sao Paulo</option>
+        <option value="Asia/Dubai">Dubai</option>
+        <option value="America/Chicago">Chicago</option>
       </select>
-      <div class="cities">
+      <div id="cities">
         <div class="city" id="amsterdam">
           <div>
-            <h2>Amsterdam 🇳🇱</h2>
+            <h2>Amsterdam</h2>
             <div class="date" id="date"></div>
           </div>
           <div class="time" id="time"></div>
         </div>
-        <div class="city" id="sao-paulo">
+        <div class="city" id="shanghai">
           <div>
-            <h2>Sao Paulo 🇧🇷</h2>
+            <h2>Shanghai</h2>
             <div class="date" id="date"></div>
           </div>
           <div class="time" id="time"></div>
